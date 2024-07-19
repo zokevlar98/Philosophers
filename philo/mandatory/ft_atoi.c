@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   atoi.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/18 03:17:58 by zqouri            #+#    #+#             */
-/*   Updated: 2024/07/19 09:52:34 by zqouri           ###   ########.fr       */
+/*   Created: 2024/07/19 09:39:16 by zqouri            #+#    #+#             */
+/*   Updated: 2024/07/19 09:41:02 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int ac, char **av)
+size_t ft_atoi(char *str)
 {
-    (void)av;
-    if (ac != 5 && ac != 6)
-        usage();
-    return (0);
+    size_t res;
+    int sign;
+
+    res = 0;
+    sign = 1;
+    return (res * sign);
 }

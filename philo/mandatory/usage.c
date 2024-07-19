@@ -1,21 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   ft_out.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/18 03:17:58 by zqouri            #+#    #+#             */
-/*   Updated: 2024/07/19 09:52:34 by zqouri           ###   ########.fr       */
+/*   Created: 2024/07/19 09:46:25 by zqouri            #+#    #+#             */
+/*   Updated: 2024/07/19 09:49:43 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int ac, char **av)
+void    usage()
 {
-    (void)av;
-    if (ac != 5 && ac != 6)
-        usage();
-    return (0);
+    printf("Error: Wrong number of arguments\n");
+    exit(EXIT_FAILURE);
 }

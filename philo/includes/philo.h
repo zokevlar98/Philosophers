@@ -6,7 +6,7 @@
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 03:15:28 by zqouri            #+#    #+#             */
-/*   Updated: 2024/07/18 03:33:58 by zqouri           ###   ########.fr       */
+/*   Updated: 2024/07/19 09:49:47 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 # include <unistd.h>
 # include <limits.h>
 # include <errno.h>
+# include <pthread.h>
 
 
+//ANXPECTED
+void    usage();
 # endif
