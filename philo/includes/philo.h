@@ -6,7 +6,7 @@
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 03:15:28 by zqouri            #+#    #+#             */
-/*   Updated: 2024/07/20 13:51:30 by zqouri           ###   ########.fr       */
+/*   Updated: 2024/07/20 14:29:03 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ nbr_philo   time_to_die time_to_eat time_to_sleep [nbr_meals]
 typedef struct s_philo
 {
     int     id_philo;
-    size_t  nbr_philo;
-    size_t  time_to_die;
-    size_t  time_to_eat;
-    size_t  time_to_sleep;
-    size_t  nbr_meals;
+    long  nbr_philo;
+    long  time_to_die;
+    long  time_to_eat;
+    long  time_to_sleep;
+    long  nbr_meals;
 }   t_philo;
 
 

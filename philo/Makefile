@@ -4,8 +4,9 @@ CFLAGS = -Wall -Wextra -Werror -I ./includes
 
 RM = rm -rf
 
-SRCS = 		mandatory/philo.c		\
-			mandatory/ft_atoi.c		\
+SRCS = 		mandatory/philo.c			\
+			mandatory/ft_atoi.c			\
+			mandatory/parsing.c			\
 
 
 OBJS = $(SRCS:.c=.o)
