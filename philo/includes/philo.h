@@ -6,7 +6,7 @@
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 03:15:28 by zqouri            #+#    #+#             */
-/*   Updated: 2024/07/20 14:29:03 by zqouri           ###   ########.fr       */
+/*   Updated: 2024/07/20 20:48:24 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,6 @@ typedef struct s_philo
 long long ft_atoi(char *str);
 
 //parsing
-int parsing(int ac, char **av, t_philo *philo);
+t_philo *parsing(int ac, char **av);
+int     check_args(char **av);
 # endif
