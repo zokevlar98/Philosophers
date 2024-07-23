@@ -6,7 +6,7 @@
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 09:39:16 by zqouri            #+#    #+#             */
-/*   Updated: 2024/07/20 15:11:13 by zqouri           ###   ########.fr       */
+/*   Updated: 2024/07/21 22:37:47 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,7 @@ long long ft_atoi(char *str)
         res = res * 10 + str[i] - '0';
         i++;
     }
+    if (str[i] != '\0')
+        return (-1);
     return (res * sign);
 }
