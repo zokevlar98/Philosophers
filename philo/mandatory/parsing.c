@@ -6,7 +6,7 @@
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 08:20:18 by zqouri            #+#    #+#             */
-/*   Updated: 2024/07/20 20:51:28 by zqouri           ###   ########.fr       */
+/*   Updated: 2024/08/26 06:49:30 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,35 +25,35 @@ int check_args(char **av)
     return (1);
 }
 
-int check_data(int ac, char **av, t_philo *philo)
+int check_data(int ac, char **av, t_data *data)
 {
-    philo->nbr_philo = ft_atoi(av[1]);
-    if (philo->nbr_philo <= 0 || philo->nbr_philo > 200)
+    data->nbr_philo = (int)ft_atoi(av[1]);
+    if (data->nbr_philo <= 0 || data->nbr_philo > 200)
     {
         printf("Error: Number of philos should be greater than 0 & less than 200\n");
         return (0);
     }
-    philo->time_to_die = ft_atoi(av[2]) * 1e3;
-    philo->time_to_eat = ft_atoi(av[3]) * 1e3;
-    philo->time_to_sleep = ft_atoi(av[4]) * 1e3;
+    data->time_to_die = ft_atoi(av[2]) * 1e3;
+    data->time_to_eat = ft_atoi(av[3]) * 1e3;
+    data->time_to_sleep = ft_atoi(av[4]) * 1e3;
     if (ac == 6)
-        philo->nbr_meals = ft_atoi(av[5]);
+        data->nbr_meals = (int)ft_atoi(av[5]);
     else 
-        philo->nbr_meals = -1;
+        data->nbr_meals = -1;
     return (1);
 }
 
-t_philo *parsing(int ac, char **av)
+t_data *parsing(int ac, char **av)
 {
-    t_philo *philo;
+    t_data *data;
 
-    philo = (t_philo *)malloc(sizeof(t_philo));
-    if (!philo)
+    data = (t_data *)malloc(sizeof(t_data));
+    if (!data)
         return (NULL);
-    if (!check_data(ac, av, philo))
+    if (!check_data(ac, av, data))
     {
-        free(philo);
+        free(data);
         return (NULL);
     }
-    return (philo);
+    return (data);
 }

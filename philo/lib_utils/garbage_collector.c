@@ -1,24 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   garbage_collector.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/20 21:02:48 by zqouri            #+#    #+#             */
-/*   Updated: 2024/08/26 06:56:26 by zqouri           ###   ########.fr       */
+/*   Created: 2024/08/26 05:16:00 by zqouri            #+#    #+#             */
+/*   Updated: 2024/08/26 05:43:57 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-t_data    *init_philos(t_data **data, int n)
+void    *garbage_collector(void)
 {
-    t_data *new;
-
-    new = (t_data *)malloc(sizeof(t_data));
-    if (!new)
-        return (NULL);
-
-    return (new);
 }

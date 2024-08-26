@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/20 21:02:48 by zqouri            #+#    #+#             */
-/*   Updated: 2024/08/26 06:56:26 by zqouri           ###   ########.fr       */
+/*   Created: 2024/08/26 05:46:06 by zqouri            #+#    #+#             */
+/*   Updated: 2024/08/26 06:57:51 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-t_data    *init_philos(t_data **data, int n)
+t_data *ft_lstnew_philo(int id, t_data *data)
 {
-    t_data *new;
-
-    new = (t_data *)malloc(sizeof(t_data));
-    if (!new)
-        return (NULL);
-
-    return (new);
 }
+//Add ft_lstadd_back_philo & ft_lstlast_philo
