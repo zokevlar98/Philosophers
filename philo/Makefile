@@ -4,9 +4,10 @@ CFLAGS = -Wall -Wextra -Werror -I ./includes
 
 RM = rm -rf
 
-SRCS = 		mandatory/philo.c			\
-			mandatory/parsing.c			\
-			lib_utils/ft_atoi.c			\
+SRCS = 		mandatory/philo.c				\
+			mandatory/parsing.c				\
+			lib_utils/ft_atoi.c				\
+			lib_utils/ft_usleep.c			\
 
 
 OBJS = $(SRCS:.c=.o)

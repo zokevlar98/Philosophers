@@ -6,7 +6,7 @@
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 00:24:59 by zqouri            #+#    #+#             */
-/*   Updated: 2024/07/23 13:53:55 by zqouri           ###   ########.fr       */
+/*   Updated: 2024/08/26 10:54:12 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,8 @@ int main(void)
         return (1);
     pthread_mutex_destroy(&data.mutex);
     printf("shared_var = %d\n", data.shared_var);
+    // struct timeval t;
+    // gettimeofday(&t, NULL);
+    // printf("%ld\n", t.tv_sec * 1000 + t.tv_usec / 1000);
     return 0;
 }
