@@ -6,7 +6,7 @@
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 21:02:48 by zqouri            #+#    #+#             */
-/*   Updated: 2024/08/26 06:56:26 by zqouri           ###   ########.fr       */
+/*   Updated: 2024/09/18 00:18:48 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,5 @@ t_data    *init_philos(t_data **data, int n)
     new = (t_data *)malloc(sizeof(t_data));
     if (!new)
         return (NULL);
-
     return (new);
 }

@@ -6,7 +6,7 @@
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 08:20:18 by zqouri            #+#    #+#             */
-/*   Updated: 2024/08/26 06:49:30 by zqouri           ###   ########.fr       */
+/*   Updated: 2024/09/18 00:14:21 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int check_data(int ac, char **av, t_data *data)
         data->nbr_meals = (int)ft_atoi(av[5]);
     else 
         data->nbr_meals = -1;
+    data->start_time = get_time_now();
     return (1);
 }
 

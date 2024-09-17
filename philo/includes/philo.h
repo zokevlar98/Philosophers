@@ -6,7 +6,7 @@
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 03:15:28 by zqouri            #+#    #+#             */
-/*   Updated: 2024/08/26 06:43:39 by zqouri           ###   ########.fr       */
+/*   Updated: 2024/09/18 00:26:24 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,17 @@
 nbr_philo   time_to_die time_to_eat time_to_sleep [nbr_meals]
         ./philo 5 800 200 200
 */
-typedef struct s_philo
+typedef struct s_philos
 {
     int             id;
     int				nbr_meals_per_philo;
-    pthread_t       thread;
+    long            last_meal;
+    pthread_t       philo;
     pthread_mutex_t *fork;
+    pthread_mutex_t *monitor;
+    pthread_mutex_t *print;
 	struct s_philo	*next;
-}   t_philo;
+}   t_philos;
 
 typedef struct s_data
 {
@@ -43,7 +46,7 @@ typedef struct s_data
     long	time_to_eat;
     long	time_to_sleep;
     long	start_time;
-    struct s_philo	*philos;
+    struct s_philos	*philos;
 }   t_data;
 
 //utils
