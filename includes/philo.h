@@ -6,7 +6,7 @@
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 03:15:28 by zqouri            #+#    #+#             */
-/*   Updated: 2024/09/19 08:59:38 by zqouri           ###   ########.fr       */
+/*   Updated: 2024/09/20 00:44:16 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ typedef struct s_philos
 	int				nbr_meals_per_philo;
 	long            last_meal;
 	pthread_t       philo;
-	pthread_mutex_t *fork;
+	pthread_mutex_t fork;
 	pthread_mutex_t *monitor;
 	pthread_mutex_t *print;
-	struct s_data  *data;
-	struct s_philo	*next;
-}   t_philos;
+	struct s_data	*data;
+	struct s_philos	*next;
+}   	t_philos;
 
 typedef struct s_data
 {
@@ -48,7 +48,7 @@ typedef struct s_data
 	long	time_to_sleep;
 	long	start_time;
 	struct s_philos	*philos;
-}   t_data;
+}   	t_data;
 
 //utils
 long long ft_atoi(char *str);
@@ -66,5 +66,8 @@ void		ft_lstadd_back_ph(t_philos **lst, t_philos *new);
 
 //philo
 t_data	*init_philos(t_data **data, int n);
+
+//test
+void    affiche(t_data *data);
 
 # endif

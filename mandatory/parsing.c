@@ -6,7 +6,7 @@
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 08:20:18 by zqouri            #+#    #+#             */
-/*   Updated: 2024/09/19 00:52:30 by zqouri           ###   ########.fr       */
+/*   Updated: 2024/09/20 00:34:49 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int check_data(int ac, char **av, t_data *data)
         printf("Error: Number of philos should be greater than 0 & less than 200\n");
         return (0);
     }
+    data->philos = NULL;
     data->time_to_die = ft_atoi(av[2]) * 1e3;
     data->time_to_eat = ft_atoi(av[3]) * 1e3;
     data->time_to_sleep = ft_atoi(av[4]) * 1e3;

@@ -1,6 +1,8 @@
 NAME = philo
 
-CFLAGS = -Wall -Wextra -Werror -I ./includes
+CC = cc
+
+CFLAGS = -Wall -Wextra -Werror  -fsanitize=address -g -I ./includes
 
 RM = rm -rf
 
@@ -17,10 +19,10 @@ OBJS = $(SRCS:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	cc $(CFLAGS) $(OBJS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
 %.o:%.c includes/philo.h
-	cc $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	$(RM) $(OBJS)

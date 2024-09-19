@@ -6,7 +6,7 @@
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 21:02:48 by zqouri            #+#    #+#             */
-/*   Updated: 2024/09/19 09:02:20 by zqouri           ###   ########.fr       */
+/*   Updated: 2024/09/20 00:35:01 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,13 @@ pthread_mutex_t *allocate_mutex(int nbr)
 t_data	*init_philos(t_data **data, int n)
 {
 	int         	i;
-	t_philos		*last;
-	t_philos    	*philo;
+	t_philos    	*tmp;
 	pthread_mutex_t *m;
 	pthread_mutex_t *p;
 
 	i = 1;
+	if (!data)
+		return (NULL);
 	m = allocate_mutex(n);
 	p = allocate_mutex(1);
 	if (!m || !p)
@@ -39,15 +40,14 @@ t_data	*init_philos(t_data **data, int n)
 	{
 		if (pthread_mutex_init(&m[i - 1], NULL))
 			return (NULL);
-		philo = ft_lstnew_ph(i, *data);
-		if (!philo)
+		tmp = ft_lstnew_ph(i, *data);
+		if (!tmp)
 			return (NULL);
-		philo->print = p;
-		philo->monitor = &m[i - 1];
-		ft_lstadd_back_ph(&(*data)->philos, philo);
+		tmp->print = p;
+		tmp->monitor = &m[i - 1];
+		ft_lstadd_back_ph(&(*data)->philos, tmp);//segv here
 		i++;
 	}
-	last = ft_lstlast_ph((*data)->philos);
-	last->next = (t_philos *)(*data)->philos;//error
+	ft_lstlast_ph((*data)->philos)->next = (*data)->philos;
 	return (free(m) ,free(p) , (*data));
 }
