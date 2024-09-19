@@ -6,7 +6,7 @@
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 03:17:58 by zqouri            #+#    #+#             */
-/*   Updated: 2024/09/18 00:25:03 by zqouri           ###   ########.fr       */
+/*   Updated: 2024/09/19 00:58:14 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int ac, char **av)
         data = parsing(ac, av);
         if (!data)
             return (0);
-        data = init_philos(&data);
+        data = init_philos(&data, data->nbr_philo);
         //data_init() :  malloc philo malloc forks and init mutex...
         
         //diner_start() start_simulation : create threads and start simulation

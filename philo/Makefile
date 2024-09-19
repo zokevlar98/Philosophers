@@ -6,8 +6,10 @@ RM = rm -rf
 
 SRCS = 		mandatory/philo.c				\
 			mandatory/parsing.c				\
+			mandatory/init.c				\
 			lib_utils/ft_atoi.c				\
 			lib_utils/ft_usleep.c			\
+			lib_utils/utils.c				\
 
 
 OBJS = $(SRCS:.c=.o)

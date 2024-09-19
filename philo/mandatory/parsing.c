@@ -6,7 +6,7 @@
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 08:20:18 by zqouri            #+#    #+#             */
-/*   Updated: 2024/09/18 00:14:21 by zqouri           ###   ########.fr       */
+/*   Updated: 2024/09/19 00:52:30 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int check_data(int ac, char **av, t_data *data)
     return (1);
 }
 
-t_data *parsing(int ac, char **av)
+t_data  *parsing(int ac, char **av)
 {
     t_data *data;
 
