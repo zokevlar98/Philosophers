@@ -12,6 +12,7 @@ SRCS = 		mandatory/philo.c				\
 			lib_utils/ft_atoi.c				\
 			lib_utils/ft_usleep.c			\
 			lib_utils/utils.c				\
+			lib_utils/test.c				\
 
 
 OBJS = $(SRCS:.c=.o)

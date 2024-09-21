@@ -6,7 +6,7 @@
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 05:46:06 by zqouri            #+#    #+#             */
-/*   Updated: 2024/09/20 00:35:24 by zqouri           ###   ########.fr       */
+/*   Updated: 2024/09/20 00:53:30 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_philos    *ft_lstnew_ph(int id, t_data *data)
         return (NULL);
     new->id = id;
     new->nbr_meals_per_philo = 0;
+    new->last_meal = 0;//for now it's 0
     new->data = data;
     if (pthread_mutex_init(&new->fork, NULL))
         return (NULL);

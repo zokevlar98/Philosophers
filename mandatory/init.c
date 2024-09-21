@@ -6,7 +6,7 @@
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 21:02:48 by zqouri            #+#    #+#             */
-/*   Updated: 2024/09/20 00:35:01 by zqouri           ###   ########.fr       */
+/*   Updated: 2024/09/20 01:17:33 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_data	*init_philos(t_data **data, int n)
 	p = allocate_mutex(1);
 	if (!m || !p)
 		return (NULL);
-	while (i < n)
+	while (i < n + 1)
 	{
 		if (pthread_mutex_init(&m[i - 1], NULL))
 			return (NULL);

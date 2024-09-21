@@ -6,7 +6,7 @@
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 03:15:28 by zqouri            #+#    #+#             */
-/*   Updated: 2024/09/20 00:44:16 by zqouri           ###   ########.fr       */
+/*   Updated: 2024/09/21 01:13:58 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void		ft_lstadd_back_ph(t_philos **lst, t_philos *new);
 
 //philo
 t_data	*init_philos(t_data **data, int n);
-
+void    diner_start(t_philos *philo, int nbr);
 //test
 void    affiche(t_data *data);
 
