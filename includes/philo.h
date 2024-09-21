@@ -6,7 +6,7 @@
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 03:15:28 by zqouri            #+#    #+#             */
-/*   Updated: 2024/09/21 01:13:58 by zqouri           ###   ########.fr       */
+/*   Updated: 2024/09/21 04:02:08 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ typedef struct s_philos
 	long            last_meal;
 	pthread_t       philo;
 	pthread_mutex_t fork;
+	//mutex lfork;
+	//mutex = *rfork;
 	pthread_mutex_t *monitor;
 	pthread_mutex_t *print;
 	struct s_data	*data;

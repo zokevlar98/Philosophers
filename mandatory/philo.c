@@ -6,7 +6,7 @@
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 03:17:58 by zqouri            #+#    #+#             */
-/*   Updated: 2024/09/21 01:14:11 by zqouri           ###   ########.fr       */
+/*   Updated: 2024/09/21 04:05:30 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main(int ac, char **av)
         if (!data)
             return (1);
         affiche(data);
-        diner_start(data->philos, data->nbr_philo);
+        // diner_start(data->philos, data->nbr_philo);
         //data_init() :  malloc philo malloc forks and init mutex...
         
         //diner_start() start_simulation : create threads and start simulation

@@ -6,7 +6,7 @@
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 21:02:48 by zqouri            #+#    #+#             */
-/*   Updated: 2024/09/20 01:17:33 by zqouri           ###   ########.fr       */
+/*   Updated: 2024/09/21 03:51:47 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_data	*init_philos(t_data **data, int n)
 			return (NULL);
 		tmp->print = p;
 		tmp->monitor = &m[i - 1];
-		ft_lstadd_back_ph(&(*data)->philos, tmp);//segv here
+		ft_lstadd_back_ph(&(*data)->philos, tmp);
 		i++;
 	}
 	ft_lstlast_ph((*data)->philos)->next = (*data)->philos;
