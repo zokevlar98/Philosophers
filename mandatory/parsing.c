@@ -6,7 +6,7 @@
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 08:20:18 by zqouri            #+#    #+#             */
-/*   Updated: 2024/09/20 00:34:49 by zqouri           ###   ########.fr       */
+/*   Updated: 2024/11/09 12:43:55 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ t_data  *parsing(int ac, char **av)
     if (!check_data(ac, av, data))
     {
         free(data);
+        data = NULL;
         return (NULL);
     }
     return (data);

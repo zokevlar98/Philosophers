@@ -6,21 +6,19 @@
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 09:39:16 by zqouri            #+#    #+#             */
-/*   Updated: 2024/08/26 06:48:49 by zqouri           ###   ########.fr       */
+/*   Updated: 2024/11/09 12:41:38 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-/*
-protection overflow
-*/
 
 long long ft_atoi(char *str)
 {
 	int         i;
 	int         sign;
 	long long   res;
+	long long   tmp;
 
 	i = 0;
 	res = 0;
@@ -37,7 +35,10 @@ long long ft_atoi(char *str)
 	}
 	while (str[i] >= '0' && str[i] <= '9')
 	{
+		tmp = res;
 		res = res * 10 + str[i] - '0';
+		if (res < tmp)
+			return (-1);
 		i++;
 	}
 	if (str[i] != '\0')
