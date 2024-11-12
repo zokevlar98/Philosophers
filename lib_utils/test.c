@@ -6,7 +6,7 @@
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 00:35:58 by zqouri            #+#    #+#             */
-/*   Updated: 2024/09/20 01:15:45 by zqouri           ###   ########.fr       */
+/*   Updated: 2024/11/12 22:09:59 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void    affiche(t_data *data)
         printf("id: %d\n", tmp->id);
         printf("nbr_meals_per_philo: %d\n", tmp->nbr_meals_per_philo);
         printf("last_meal: %ld\n", tmp->last_meal);
-        tmp = tmp->next;
         i++;
         if (i >= data->nbr_philo)
             break ; 

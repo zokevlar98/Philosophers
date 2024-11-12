@@ -6,7 +6,7 @@
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 21:02:48 by zqouri            #+#    #+#             */
-/*   Updated: 2024/09/21 03:51:47 by zqouri           ###   ########.fr       */
+/*   Updated: 2024/11/12 20:28:40 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,32 +22,69 @@ pthread_mutex_t *allocate_mutex(int nbr)
 	return (mutex);
 }
 
-t_data	*init_philos(t_data **data, int n)
+t_data	*init_philos(t_data *data, int n)
 {
-	int         	i;
-	t_philos    	*tmp;
-	pthread_mutex_t *m;
-	pthread_mutex_t *p;
+	t_philos	*tmp = NULL;
+	int	i = 0;
 
-	i = 1;
 	if (!data)
 		return (NULL);
-	m = allocate_mutex(n);
-	p = allocate_mutex(1);
-	if (!m || !p)
+	tmp = malloc(sizeof(t_philos) * n);
+	if (!tmp)
 		return (NULL);
-	while (i < n + 1)
+	while (i < n)
 	{
-		if (pthread_mutex_init(&m[i - 1], NULL))
-			return (NULL);
-		tmp = ft_lstnew_ph(i, *data);
-		if (!tmp)
-			return (NULL);
-		tmp->print = p;
-		tmp->monitor = &m[i - 1];
-		ft_lstadd_back_ph(&(*data)->philos, tmp);
+		tmp[i].data = data;
+		pthread_mutex_init(&tmp[i].fork, NULL);
+		// pthread_mutex_init(&tmp[i].print, NULL);
+		tmp[i].id = i + 1;
+		tmp[i].nbr_meals_per_philo = 0;
+		tmp[i].last_meal = 0;
 		i++;
 	}
-	ft_lstlast_ph((*data)->philos)->next = (*data)->philos;
-	return (free(m) ,free(p) , (*data));
+	i = 0;
+	pthread_mutex_init(&data->print, NULL);
+	while (i < n)
+	{
+		if (pthread_create(&tmp[i].philo, NULL, &routine, &tmp[i]))
+		{
+			ft_putstr_fd("Error: pthread_create\n", 2);
+			return (NULL);
+		}
+		i++;
+	}
+	if (death_checker(tmp, n))
+		return (NULL);
+	//exit_dyal()
+	i = 0;
+	while (i < n)
+	{
+		pthread_join(tmp[i].philo, NULL);
+		i++;
+	}
+	pthread_mutex_destroy(&data->print);
+	pthread_mutex_destroy(&tmp->fork);
+	free(tmp);
+	return (data);
+}
+
+int	death_checker(t_philos *philo, int n)
+{
+	int			i;
+	int			nbr_meals;
+	t_philos	tmp;
+
+	while (1)
+	{
+		i = 0;
+		nbr_meals = 0;
+		while (i < n)
+		{
+			tmp = philo[i];
+			if ((long)(get_time_now() - tmp.last_meal) >= philo->data->time_to_die)
+				return (print_status(&tmp, "is dead"), philo->data->dead = 1);
+			i++;
+		}
+	}
+	return (0);
 }

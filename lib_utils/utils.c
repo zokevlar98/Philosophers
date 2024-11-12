@@ -6,50 +6,22 @@
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 05:46:06 by zqouri            #+#    #+#             */
-/*   Updated: 2024/09/20 00:53:30 by zqouri           ###   ########.fr       */
+/*   Updated: 2024/11/12 21:11:26 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-t_philos    *ft_lstnew_ph(int id, t_data *data)
+void	ft_putstr_fd(char *str, int fd)
 {
-    t_philos    *new;
+	int	i;
 
-    new = (t_philos *)malloc(sizeof(t_philos));
-    if (!new)
-        return (NULL);
-    new->id = id;
-    new->nbr_meals_per_philo = 0;
-    new->last_meal = 0;//for now it's 0
-    new->data = data;
-    if (pthread_mutex_init(&new->fork, NULL))
-        return (NULL);
-    new->next = NULL;
-    return (new);
-}
-
-t_philos    *ft_lstlast_ph(t_philos *lst)
-{
-    t_philos    *last;
-    
-    if (!lst)
-        return (NULL);
-    last = lst;
-    while (last->next)
-    {
-        last = last->next;
-    }
-    return (last);
-}
-
-void    ft_lstadd_back_ph(t_philos **lst, t_philos *new)
-{
-    
-    if (!new || !lst)
-        return ;
-    if (!*lst)
-        *lst = new;
-    else
-        ft_lstlast_ph(*lst)->next = new;
+	i = 0;
+	if (!str)
+		return ;
+	while (str[i])
+	{
+		write (fd, &str[i], 1);
+		i++;
+	}	
 }

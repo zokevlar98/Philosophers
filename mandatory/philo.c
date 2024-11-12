@@ -6,7 +6,7 @@
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 03:17:58 by zqouri            #+#    #+#             */
-/*   Updated: 2024/09/22 01:11:17 by zqouri           ###   ########.fr       */
+/*   Updated: 2024/11/12 14:04:51 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ int	main(int ac, char **av)
         data = parsing(ac, av);
         if (!data)
             return (1);
-        data = init_philos(&data, data->nbr_philo);
+        data = init_philos(data, data->nbr_philo);
         if (!data)
             return (1);
-        affiche(data);
+        // affiche(data);
         // diner_start(data->philos, data->nbr_philo);
         //data_init() :  malloc philo malloc forks and init mutex...
         

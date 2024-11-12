@@ -6,7 +6,7 @@
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 08:20:18 by zqouri            #+#    #+#             */
-/*   Updated: 2024/11/09 12:43:55 by zqouri           ###   ########.fr       */
+/*   Updated: 2024/11/12 19:41:45 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,10 @@ int check_data(int ac, char **av, t_data *data)
         return (0);
     }
     data->philos = NULL;
-    data->time_to_die = ft_atoi(av[2]) * 1e3;
-    data->time_to_eat = ft_atoi(av[3]) * 1e3;
-    data->time_to_sleep = ft_atoi(av[4]) * 1e3;
+    data->time_to_die = ft_atoi(av[2]);
+    data->time_to_eat = ft_atoi(av[3]);
+    data->time_to_sleep = ft_atoi(av[4]);
+    data->dead = 0;
     if (ac == 6)
         data->nbr_meals = (int)ft_atoi(av[5]);
     else 

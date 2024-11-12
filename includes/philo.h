@@ -6,7 +6,7 @@
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 03:15:28 by zqouri            #+#    #+#             */
-/*   Updated: 2024/09/22 04:49:18 by zqouri           ###   ########.fr       */
+/*   Updated: 2024/11/12 21:18:27 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,48 +28,46 @@ nbr_philo   time_to_die time_to_eat time_to_sleep [nbr_meals]
 */
 typedef struct s_philos
 {
-	int             id;
+	int				id;
 	int				nbr_meals_per_philo;
-	long            last_meal;
-	pthread_t       philo;
-	pthread_mutex_t *fork;
-	// mutex lfork;
-	// mutex rfork;
-	pthread_mutex_t *monitor;
-	pthread_mutex_t *print;
+	long			last_meal;
+	pthread_t		philo;
+	pthread_mutex_t	fork;
+	// pthread_mutex_t monitor;
 	struct s_data	*data;
-	struct s_philos	*next;
-}   	t_philos;
+	// struct s_philos	*next;
+}	t_philos;
 
 typedef struct s_data
 {
-	int		nbr_philo;
-	int		nbr_meals;
-	long	time_to_die;
-	long	time_to_eat;
-	long	time_to_sleep;
-	long	start_time;
+	int				nbr_philo;
+	int				nbr_meals;
+	long			time_to_die;
+	long			time_to_eat;
+	long			time_to_sleep;
+	long			start_time;
+	int				dead;
+	pthread_mutex_t	print;//print msg
 	struct s_philos	*philos;
-}   	t_data;
+}	t_data;
 
 //utils
-long long ft_atoi(char *str);
-unsigned long get_time_now(void);
-void    ft_usleep(unsigned long time);
+long long		ft_atoi(char *str);
+unsigned long	get_time_now(void);
+void			ft_usleep(unsigned long time);
+void			ft_putstr_fd(char *str, int fd);
 
 //parsing
-t_data	*parsing(int ac, char **av);
-int		check_args(char **av);
-
-//linked_list
-t_philos	*ft_lstnew_ph(int id, t_data *data);
-t_philos    *ft_lstlast_ph(t_philos *lst);
-void		ft_lstadd_back_ph(t_philos **lst, t_philos *new);
+t_data			*parsing(int ac, char **av);
+int				check_args(char **av);
 
 //philo
-t_data	*init_philos(t_data **data, int n);
-void    diner_start(t_philos *philo, int nbr);
+t_data			*init_philos(t_data *data, int n);
+void			diner_start(t_philos *philo, int nbr);
+int				death_checker(t_philos *philo, int n);
+void			print_status(t_philos *philo, char *status);
 //test
-void    affiche(t_data *data);
+void			affiche(t_data *data);
+void			*routine(void *arg);
 
 # endif
