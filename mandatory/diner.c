@@ -6,7 +6,7 @@
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 00:36:44 by zqouri            #+#    #+#             */
-/*   Updated: 2024/11/12 20:30:24 by zqouri           ###   ########.fr       */
+/*   Updated: 2024/11/13 19:04:02 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,46 +14,43 @@
 
 void	print_status(t_philos *philo, char *status)
 {
+	if (philo->data->dead)
+		return ;
 	pthread_mutex_lock(&philo->data->print);
 	printf("%ld %d %s\n", get_time_now() - philo->data->start_time, philo->id, status);
 	pthread_mutex_unlock(&philo->data->print);
 }
 
-void    *routine(void *arg)
+void	*routine1(void *args)
 {
-	t_philos *philo;
-	
-	philo = (t_philos *)arg;
-	if (philo->id % 2 != 0)
+	t_philos	*tmp;
+
+	tmp = (t_philos *)args;
+	if (tmp->id % 2 != 0)
 		ft_usleep(100);
 	while (1)
 	{
-		if (philo->data->dead)
+		if (tmp->data->dead)
+			return (NULL);
+		if (pthread_mutex_lock(&tmp->data->philos[tmp->id - 1].fork))
 			break ;
-		pthread_mutex_lock(&philo->fork);
-		print_status(philo, "has taken a fork");
-		pthread_mutex_lock(&(philo + 1)->fork);
-		print_status(philo, "has taken a fork");
-		print_status(philo, "is eating");
-		philo->last_meal = get_time_now();
-		ft_usleep(philo->data->time_to_eat);
-		pthread_mutex_unlock(&philo->fork);
-		pthread_mutex_unlock(&(philo + 1)->fork);
-		print_status(philo, "is thinking");
-		print_status(philo, "is sleeping");
-		ft_usleep(philo->data->time_to_sleep);
+		print_status(tmp, "has taken a fork");
+		if (pthread_mutex_lock(&tmp->data->philos[tmp->id % tmp->data->nbr_philo].fork))
+			break;
+		print_status(tmp, "has taken a fork");
+		print_status(tmp, "is eating");
+		tmp->last_meal = get_time_now();
+		tmp->nbr_meals_per_philo++;
+		if (tmp->data->nbr_meals > -1 && (tmp->nbr_meals_per_philo == tmp->data->nbr_meals))
+			tmp->data->nbr_philo_meals++;
+		ft_usleep(tmp->data->time_to_eat);
+		if (pthread_mutex_unlock(&tmp->data->philos[tmp->id - 1].fork))
+			break;
+		if (pthread_mutex_unlock(&tmp->data->philos[tmp->id % tmp->data->nbr_philo].fork))
+			break;
+		print_status(tmp, "is thinking");
+		print_status(tmp, "is sleeping");
+		ft_usleep(tmp->data->time_to_sleep);
 	}
 	return (NULL);
-}
-
-void    diner_start(t_philos *philo, int nbr)
-{
-	int i;
-
-	i = 0;
-	while (i < nbr)
-	{
-		if (pthread_create(&philo->philo, NULL, &routine, (void *)philo))
-		i++;
-	}
 }

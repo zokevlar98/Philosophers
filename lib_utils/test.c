@@ -6,7 +6,7 @@
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 00:35:58 by zqouri            #+#    #+#             */
-/*   Updated: 2024/11/12 22:14:26 by zqouri           ###   ########.fr       */
+/*   Updated: 2024/11/13 11:42:37 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,13 @@ void    affiche(t_data *data)
 	printf("time_to_eat: %ld\n", data->time_to_eat);
 	printf("time_to_sleep: %ld\n", data->time_to_sleep);
 	printf("start_time: %ld\n", data->start_time);
-	while (i < n)
+	printf("dead: %d\n", data->dead);
+	while (i < data->nbr_philo)
 	{
 		philo = tmp[i];
-		printf("philos %d====================\n", tmp->id);
-		printf("id: %d\n", tmp->id);
-		printf("nbr_meals_per_philo: %d\n", tmp->nbr_meals_per_philo);
-		printf("last_meal: %ld\n", tmp->last_meal);
+		printf("philos %d====================\n", philo.id);
+		printf("nbr_meals_per_philo: %d\n", philo.nbr_meals_per_philo);
+		printf("last_meal: %ld\n", philo.last_meal);
 		i++;
-		if (i >= data->nbr_philo)
-			break ; 
 	}    
 }
