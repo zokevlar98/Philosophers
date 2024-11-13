@@ -6,7 +6,7 @@
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 21:02:48 by zqouri            #+#    #+#             */
-/*   Updated: 2024/11/13 22:32:06 by zqouri           ###   ########.fr       */
+/*   Updated: 2024/11/13 22:42:21 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_data	*init_philos(t_data *data, int n)
 	pthread_mutex_init(&data->print, NULL);
 	while (i < n)
 	{
-		if (pthread_create(&tmp[i].philo, NULL, &routine1, &tmp[i]))
+		if (pthread_create(&tmp[i].philo, NULL, &routine, &tmp[i]))
 		{
 			printf("Error: pthread_create\n");
 			return (NULL);

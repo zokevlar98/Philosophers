@@ -6,7 +6,7 @@
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 03:15:28 by zqouri            #+#    #+#             */
-/*   Updated: 2024/11/13 22:14:25 by zqouri           ###   ########.fr       */
+/*   Updated: 2024/11/13 22:42:28 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,6 @@ int				death_checker(t_philos *philo, int n);
 void			print_status(t_philos *philo, char *status);
 //test
 void			affiche(t_data *data);
-void			*routine1(void *args);
+void			*routine(void *args);
 
 # endif

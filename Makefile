@@ -2,8 +2,8 @@ NAME = philo
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=thread -I ./includes
-# CFLAGS = -Wall -Wextra -Werror  -I ./includes
+# CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=thread -I ./includes
+CFLAGS = -Wall -Wextra -Werror  -I ./includes
 
 RM = rm -rf
 
@@ -13,8 +13,6 @@ SRCS = 		mandatory/philo.c				\
 			mandatory/diner.c				\
 			lib_utils/ft_atoi.c				\
 			lib_utils/ft_usleep.c			\
-			#lib_utils/test.c				\
-
 
 OBJS = $(SRCS:.c=.o)
 

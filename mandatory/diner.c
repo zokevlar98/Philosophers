@@ -6,7 +6,7 @@
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 00:36:44 by zqouri            #+#    #+#             */
-/*   Updated: 2024/11/13 19:04:02 by zqouri           ###   ########.fr       */
+/*   Updated: 2024/11/13 22:42:19 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	print_status(t_philos *philo, char *status)
 	pthread_mutex_unlock(&philo->data->print);
 }
 
-void	*routine1(void *args)
+void	*routine(void *args)
 {
 	t_philos	*tmp;
 
