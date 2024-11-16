@@ -6,7 +6,7 @@
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 03:15:28 by zqouri            #+#    #+#             */
-/*   Updated: 2024/11/13 22:42:28 by zqouri           ###   ########.fr       */
+/*   Updated: 2024/11/17 00:08:39 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,10 @@ typedef struct s_philos
 {
 	int				id;
 	int				nbr_meals_per_philo;
-	long			last_meal;
+	unsigned long			last_meal;
 	pthread_t		philo;
 	pthread_mutex_t	fork;
-	// pthread_mutex_t monitor;
 	struct s_data	*data;
-	// struct s_philos	*next;
 }	t_philos;
 
 typedef struct s_data
@@ -45,7 +43,6 @@ typedef struct s_data
 	int				nbr_meals;
 	long			time_to_die;
 	long			time_to_eat;
-	// pthread_mutex_t	*forks;
 	long			time_to_sleep;
 	long			start_time;
 	_Atomic int				dead;
@@ -64,11 +61,9 @@ int				check_args(char **av);
 
 //philo
 t_data			*init_philos(t_data *data, int n);
-void			diner_start(t_philos *philo, int nbr);
 int				death_checker(t_philos *philo, int n);
 void			print_status(t_philos *philo, char *status);
 //test
 void			affiche(t_data *data);
 void			*routine(void *args);
-
 # endif

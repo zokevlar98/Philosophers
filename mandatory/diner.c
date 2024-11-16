@@ -6,7 +6,7 @@
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 00:36:44 by zqouri            #+#    #+#             */
-/*   Updated: 2024/11/13 22:42:19 by zqouri           ###   ########.fr       */
+/*   Updated: 2024/11/17 00:08:34 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,8 @@ void	*routine(void *args)
 	tmp = (t_philos *)args;
 	if (tmp->id % 2 != 0)
 		ft_usleep(100);
-	while (1)
+	while (tmp->data->dead == 0)
 	{
-		if (tmp->data->dead)
-			return (NULL);
 		if (pthread_mutex_lock(&tmp->data->philos[tmp->id - 1].fork))
 			break ;
 		print_status(tmp, "has taken a fork");

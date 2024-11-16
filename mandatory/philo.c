@@ -6,7 +6,7 @@
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 03:17:58 by zqouri            #+#    #+#             */
-/*   Updated: 2024/11/13 22:13:05 by zqouri           ###   ########.fr       */
+/*   Updated: 2024/11/15 19:26:30 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	main(int ac, char **av)
 	if (ac == 5 || ac == 6)
 	{
 		if (!check_args(av))
-			return (printf("Invalide args\n"), 0);
+			return (printf("Invalide args\n"), 1);
 		data = parsing(ac, av);
 		if (!data)
 			return (1);
