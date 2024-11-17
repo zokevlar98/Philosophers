@@ -6,7 +6,7 @@
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 03:15:28 by zqouri            #+#    #+#             */
-/*   Updated: 2024/11/17 00:08:39 by zqouri           ###   ########.fr       */
+/*   Updated: 2024/11/17 03:23:37 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_philos
 {
 	int				id;
 	int				nbr_meals_per_philo;
-	unsigned long			last_meal;
+	unsigned long	last_meal;
 	pthread_t		philo;
 	pthread_mutex_t	fork;
 	struct s_data	*data;
@@ -39,31 +39,26 @@ typedef struct s_philos
 typedef struct s_data
 {
 	int				nbr_philo;
-	_Atomic		int	nbr_philo_meals;
+	_Atomic int		nbr_philo_meals;
 	int				nbr_meals;
 	long			time_to_die;
 	long			time_to_eat;
 	long			time_to_sleep;
 	long			start_time;
-	_Atomic int				dead;
+	_Atomic int		dead;
 	pthread_mutex_t	print;
+	pthread_mutex_t	monitor;
 	struct s_philos	*philos;
 }	t_data;
 
-//utils
 long long		ft_atoi(char *str);
 unsigned long	get_time_now(void);
 void			ft_usleep(unsigned long time);
-
-//parsing
 t_data			*parsing(int ac, char **av);
 int				check_args(char **av);
-
-//philo
 t_data			*init_philos(t_data *data, int n);
 int				death_checker(t_philos *philo, int n);
 void			print_status(t_philos *philo, char *status);
-//test
-void			affiche(t_data *data);
 void			*routine(void *args);
+
 # endif

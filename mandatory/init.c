@@ -6,7 +6,7 @@
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 21:02:48 by zqouri            #+#    #+#             */
-/*   Updated: 2024/11/17 00:09:08 by zqouri           ###   ########.fr       */
+/*   Updated: 2024/11/17 03:16:39 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,9 @@ t_data	*init_philos(t_data *data, int n)
 	{
 		if (pthread_create(&tmp[i].philo, NULL, &routine, &tmp[i]))
 			return (printf("Error: pthread_create\n"), NULL);
+		pthread_detach(tmp[i].philo);
 		i++;
 	}
-	for (int j = 0; j < n; j++)
-		pthread_detach(tmp[j].philo);
 	if (death_checker(tmp, n))
 		return (NULL);
 	pthread_mutex_destroy(&data->print);
@@ -53,27 +52,26 @@ t_data	*init_philos(t_data *data, int n)
 int	death_checker(t_philos *philo, int n)
 {
 	int			i;
-	t_philos	tmp;
 
 	while (1)
 	{
 		i = 0;
-		ft_usleep(10);
 		while (i < n)
 		{
-			tmp = philo[i];
 			if (n == philo->data->nbr_philo_meals)
 			{
 				philo->data->dead = 1;
 				return (1);
 			}
-			if ((long)(get_time_now() - tmp.last_meal) > philo->data->time_to_die)
+			pthread_mutex_lock(&philo->data->monitor);
+			if ((long)(get_time_now() - philo->last_meal) > philo->data->time_to_die)
 			{
 				philo->data->dead = 1;
 				pthread_mutex_lock(&philo->data->print);
 				printf("%ld %d %s\n", get_time_now() - philo->data->start_time, philo->id, "is dead");
 				return (1);
 			}
+			pthread_mutex_unlock(&philo->data->monitor);
 			i++;
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 08:20:18 by zqouri            #+#    #+#             */
-/*   Updated: 2024/11/13 22:41:23 by zqouri           ###   ########.fr       */
+/*   Updated: 2024/11/17 03:21:14 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,13 @@ int	check_args(char **av)
 	return (1);
 }
 
-int check_data(int ac, char **av, t_data *data)
+int	check_data(int ac, char **av, t_data *data)
 {
 	data->nbr_philo = (int)ft_atoi(av[1]);
 	if (data->nbr_philo <= 0 || data->nbr_philo > 200)
 	{
-		printf("Error: Number of philos should be greater than 0 & less than 200\n");
+		printf("Error: Number of philos should ");
+		printf("be greater than 0 & less than 200\n");
 		return (0);
 	}
 	data->philos = NULL;
@@ -68,15 +69,15 @@ int check_data(int ac, char **av, t_data *data)
 	data->dead = 0;
 	if (ac == 6)
 		data->nbr_meals = (int)ft_atoi(av[5]);
-	else 
+	else
 		data->nbr_meals = -1;
 	data->start_time = get_time_now();
 	return (1);
 }
 
-t_data  *parsing(int ac, char **av)
+t_data	*parsing(int ac, char **av)
 {
-	t_data *data;
+	t_data	*data;
 
 	data = (t_data *)malloc(sizeof(t_data));
 	if (!data)
