@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 03:17:58 by zqouri            #+#    #+#             */
-/*   Updated: 2024/11/17 03:18:45 by zqouri           ###   ########.fr       */
+/*   Updated: 2024/11/18 00:14:37 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,12 @@ int	main(int ac, char **av)
 			return (printf("Invalide args\n"), 1);
 		data = parsing(ac, av);
 		if (!data)
-			return (1);
-		pthread_mutex_init(&data->monitor, NULL);
-		data = init_philos(data, data->nbr_philo);
+			return (free(data), 1);
+		data = init(data);
 		if (!data)
-			return (1);
+			return (free(data), 1);
+		if (start_simulation(data))
+			return (free(data), 1);
 	}
 	else
 		printf("Error: Wrong number of arguments\n");

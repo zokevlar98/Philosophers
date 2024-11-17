@@ -6,74 +6,52 @@
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 21:02:48 by zqouri            #+#    #+#             */
-/*   Updated: 2024/11/17 03:16:39 by zqouri           ###   ########.fr       */
+/*   Updated: 2024/11/17 23:41:52 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-t_data	*init_philos(t_data *data, int n)
+void	destroy_mutexs(t_data *data, int n)
 {
-	t_philos	*tmp;
-	int			i;
-
-	i = 0;
-	tmp = malloc(sizeof(t_philos) * n);
-	if (!tmp)
-		return (NULL);
-	data->nbr_philo_meals = 0;
-	pthread_mutex_init(&data->print, NULL);
-	while (i < n)
-	{
-		tmp[i].data = data;
-		pthread_mutex_init(&tmp[i].fork, NULL);
-		tmp[i].id = i + 1;
-		tmp[i].nbr_meals_per_philo = 0;
-		tmp[i].last_meal = get_time_now();
-		i++;
-	}
-	data->philos = tmp;
-	i = 0;
-	while (i < n)
-	{
-		if (pthread_create(&tmp[i].philo, NULL, &routine, &tmp[i]))
-			return (printf("Error: pthread_create\n"), NULL);
-		pthread_detach(tmp[i].philo);
-		i++;
-	}
-	if (death_checker(tmp, n))
-		return (NULL);
 	pthread_mutex_destroy(&data->print);
-	pthread_mutex_destroy(&tmp->fork);
-	free(tmp);
-	return (data);
+	if (n > 0)
+		pthread_mutex_destroy(&data->monitor);
 }
 
-int	death_checker(t_philos *philo, int n)
+int	init_mutexs(t_data *data)
 {
-	int			i;
-
-	while (1)
-	{
-		i = 0;
-		while (i < n)
-		{
-			if (n == philo->data->nbr_philo_meals)
-			{
-				philo->data->dead = 1;
-				return (1);
-			}
-			pthread_mutex_lock(&philo->data->monitor);
-			if ((long)(get_time_now() - philo->last_meal) > philo->data->time_to_die)
-			{
-				philo->data->dead = 1;
-				pthread_mutex_lock(&philo->data->print);
-				printf("%ld %d %s\n", get_time_now() - philo->data->start_time, philo->id, "is dead");
-				return (1);
-			}
-			pthread_mutex_unlock(&philo->data->monitor);
-			i++;
-		}
-	}
+	if (pthread_mutex_init(&data->print, NULL))
+		return (1);
+	if (pthread_mutex_init(&data->monitor, NULL))
+		return (destroy_mutexs(data, 0), 1);
 	return (0);
+}
+
+t_data	*init(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	if (init_mutexs(data))
+		return (NULL);
+	data->philos = malloc(sizeof(t_philos) * data->nbr_philo);
+	if (!data->philos)
+		return (destroy_mutexs(data, 1), NULL);
+	while (i < data->nbr_philo)
+	{
+		data->philos[i].id = i + 1;
+		data->philos[i].nbr_meals_per_philo = 0;
+		data->philos[i].data = data;
+		if (pthread_mutex_init(&data->philos[i].fork, NULL))
+			return (NULL);//i need to destroy all mutexs if it faild
+		if (i + 1 == data->nbr_philo)
+			data->philos[i].fork_l = &data->philos[0].fork;
+		else
+			data->philos[i].fork_l = &data->philos[i + 1].fork;
+		// fprintf(stderr, "fork right: %p\n", &data->philos[i].fork);
+		// fprintf(stderr, "fork left: %p\n\n\n", &(*data->philos[i].fork_l));
+		i++;
+	}	
+	return (data);
 }

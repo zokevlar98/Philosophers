@@ -2,12 +2,12 @@ NAME = philo
 
 CC = cc
 
-#  CFLAGS = -g -fsanitize=thread -I ./includes
+# CFLAGS = -g3 -fsanitize=thread -I ./includes
 CFLAGS = -Wall -Wextra -Werror  -I ./includes
 
 RM = rm -rf
 
-SRCS = 		mandatory/philo.c				\
+SRCS = 		mandatory/main.c				\
 			mandatory/parsing.c				\
 			mandatory/init.c				\
 			mandatory/diner.c				\
