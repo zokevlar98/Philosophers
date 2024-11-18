@@ -1,18 +1,18 @@
+
 NAME = philo
 
 CC = cc
 
-# CFLAGS = -g3 -fsanitize=thread -I ./includes
-CFLAGS = -Wall -Wextra -Werror  -I ./includes
+CFLAGS = -Wall -Wextra -Werror 
 
 RM = rm -rf
 
-SRCS = 		mandatory/main.c				\
-			mandatory/parsing.c				\
-			mandatory/init.c				\
-			mandatory/diner.c				\
-			lib_utils/ft_atoi.c				\
-			lib_utils/ft_usleep.c			\
+SRCS = 		main.c				\
+			parsing.c			\
+			init.c				\
+			diner.c				\
+			ft_atoi.c			\
+			ft_usleep.c			\
 
 OBJS = $(SRCS:.c=.o)
 
@@ -21,7 +21,7 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
-%.o:%.c includes/philo.h
+%.o:%.c philo.h
 	$(CC) $(CFLAGS) -c $< -o $@ $(CFLAGS)
 
 clean:

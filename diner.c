@@ -6,7 +6,7 @@
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 00:36:44 by zqouri            #+#    #+#             */
-/*   Updated: 2024/11/18 18:12:28 by zqouri           ###   ########.fr       */
+/*   Updated: 2024/11/18 21:51:58 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	check_death(t_data *data)
 			data->dead = 1;
 			pthread_mutex_lock(&data->print);
 			printf("%ld %d %s\n", get_time_now() - data->start_time, data->philos[i].id, "is dead");
-			return (1);
+			return (pthread_mutex_unlock(&data->monitor), 1);
 		}
 		pthread_mutex_unlock(&data->monitor);
 		i++;
@@ -59,6 +59,7 @@ void	*routine(void *args)
 		ft_usleep(20);
 	while (1)
 	{
+		print_status(tmp, "is thinking");
 		pthread_mutex_lock(tmp->fork_l);
 		print_status(tmp, "has taken a fork");
 		pthread_mutex_lock(&tmp->fork);
@@ -73,7 +74,6 @@ void	*routine(void *args)
 		ft_usleep(tmp->data->time_to_eat);
 		pthread_mutex_unlock(tmp->fork_l);
 		pthread_mutex_unlock(&tmp->fork);
-		print_status(tmp, "is thinking");
 		print_status(tmp, "is sleeping");
 		if (tmp->data->dead)
 			return (NULL);
@@ -93,7 +93,9 @@ int	start_simulation(t_data *data)
 	data->start_time = get_time_now();
 	while (i < data->nbr_philo)
 	{
+		pthread_mutex_lock(&data->monitor);
 		data->philos[i].last_meal = data->start_time;
+		pthread_mutex_unlock(&data->monitor);
 		if (pthread_create(&tmp[i], NULL, &routine, &data->philos[i]))
 			return (free(data->philos), 1);
 		pthread_detach(tmp[i]);

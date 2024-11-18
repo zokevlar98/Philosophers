@@ -6,7 +6,7 @@
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 03:15:28 by zqouri            #+#    #+#             */
-/*   Updated: 2024/11/18 00:12:16 by zqouri           ###   ########.fr       */
+/*   Updated: 2024/11/19 00:38:29 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,28 +27,28 @@ nbr_philo   time_to_die time_to_eat time_to_sleep [nbr_meals]
 */
 typedef struct s_philos
 {
-	int				id;//init
-	int				nbr_meals_per_philo;//init
-	unsigned long	last_meal;//start_simulation
-	// pthread_t		philo;//start_simulation
-	pthread_mutex_t	fork;//init
-	pthread_mutex_t	*fork_l;//init
-	struct s_data	*data;//init
+	int				id;
+	int				nbr_meals_per_philo;
+	_Atomic unsigned long	last_meal;
+	// pthread_t		philo;
+	pthread_mutex_t	fork;
+	pthread_mutex_t	*fork_l;
+	struct s_data	*data;
 }	t_philos;
 
 typedef struct s_data
 {
-	int				nbr_philo;//parsing
+	int				nbr_philo;
 	_Atomic int		nbr_philo_meals;
-	int				nbr_meals;//parsing
-	long			time_to_die;//parsing
-	long			time_to_eat;//parsing
-	long			time_to_sleep;//parsing
-	unsigned long	start_time;//start_simulation
-	_Atomic int		dead;//parsing
-	pthread_mutex_t	print;//init
-	pthread_mutex_t	monitor;//init
-	struct s_philos	*philos;//init
+	int				nbr_meals;
+	long			time_to_die;
+	long			time_to_eat;
+	long			time_to_sleep;
+	unsigned long	start_time;
+	_Atomic int		dead;
+	pthread_mutex_t	print;
+	pthread_mutex_t	monitor;
+	struct s_philos	*philos;
 }	t_data;
 
 long long		ft_atoi(char *str);
