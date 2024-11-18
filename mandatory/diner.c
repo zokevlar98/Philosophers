@@ -6,7 +6,7 @@
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 00:36:44 by zqouri            #+#    #+#             */
-/*   Updated: 2024/11/18 00:15:03 by zqouri           ###   ########.fr       */
+/*   Updated: 2024/11/18 18:12:28 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	check_death(t_data *data)
 		{
 			data->dead = 1;
 			pthread_mutex_lock(&data->print);
-			printf("%ld %d %s\n", get_time_now() - data->start_time, data->philos->id, "is dead");
+			printf("%ld %d %s\n", get_time_now() - data->start_time, data->philos[i].id, "is dead");
 			return (1);
 		}
 		pthread_mutex_unlock(&data->monitor);
@@ -56,7 +56,7 @@ void	*routine(void *args)
 
 	tmp = (t_philos *)args;
 	if (tmp->id % 2 != 0)
-		ft_usleep(tmp->data->time_to_eat / 3);
+		ft_usleep(20);
 	while (1)
 	{
 		pthread_mutex_lock(tmp->fork_l);
