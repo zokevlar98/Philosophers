@@ -6,7 +6,7 @@
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 03:15:28 by zqouri            #+#    #+#             */
-/*   Updated: 2024/11/19 00:38:29 by zqouri           ###   ########.fr       */
+/*   Updated: 2024/11/19 01:45:32 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,15 @@
 # include <pthread.h>
 # include <sys/time.h>
 
-/*
-**  STRUCTURES
-nbr_philo   time_to_die time_to_eat time_to_sleep [nbr_meals]
-		./philo 5 800 200 200
-*/
 typedef struct s_philos
 {
-	int				id;
-	int				nbr_meals_per_philo;
+	int						id;
+	int						nbr_meals_per_philo;
 	_Atomic unsigned long	last_meal;
-	// pthread_t		philo;
-	pthread_mutex_t	fork;
-	pthread_mutex_t	*fork_l;
-	struct s_data	*data;
+	pthread_t				philo;
+	pthread_mutex_t			fork;
+	pthread_mutex_t			*fork_l;
+	struct s_data			*data;
 }	t_philos;
 
 typedef struct s_data
@@ -41,13 +36,12 @@ typedef struct s_data
 	int				nbr_philo;
 	_Atomic int		nbr_philo_meals;
 	int				nbr_meals;
-	long			time_to_die;
+	unsigned long	time_to_die;
 	long			time_to_eat;
 	long			time_to_sleep;
 	unsigned long	start_time;
 	_Atomic int		dead;
 	pthread_mutex_t	print;
-	pthread_mutex_t	monitor;
 	struct s_philos	*philos;
 }	t_data;
 
