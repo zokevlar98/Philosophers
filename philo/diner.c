@@ -6,7 +6,7 @@
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 00:36:44 by zqouri            #+#    #+#             */
-/*   Updated: 2024/11/19 01:46:21 by zqouri           ###   ########.fr       */
+/*   Updated: 2024/11/19 05:08:27 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	check_death(t_data *data)
 	{
 		if (i == data->nbr_philo)
 			i = 0;
+		usleep(100);
 		if (data->nbr_meals != -1 && (data->nbr_philo_meals == data->nbr_philo))
 			return (data->dead = 1, 1);
 		if ((get_time_now() - data->philos[i].last_meal) > data->time_to_die)
@@ -52,7 +53,7 @@ void	*routine(void *args)
 
 	tmp = (t_philos *)args;
 	if (tmp->id % 2 != 0)
-		ft_usleep(20);
+		ft_usleep(30);
 	while (!tmp->data->dead)
 	{
 		pthread_mutex_lock(tmp->fork_l);
@@ -84,7 +85,7 @@ int	start_simulation(t_data *data)
 	data->start_time = get_time_now();
 	while (i < data->nbr_philo)
 	{
-		tmp[i].last_meal = data->start_time;
+		tmp[i].last_meal = get_time_now();
 		if (pthread_create(&tmp[i].philo, NULL, &routine, &tmp[i]))
 			return (free(data->philos), 1);
 		pthread_detach(tmp[i].philo);
