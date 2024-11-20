@@ -6,7 +6,7 @@
 /*   By: zqouri <zqouri@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 03:15:28 by zqouri            #+#    #+#             */
-/*   Updated: 2024/11/19 03:51:14 by zqouri           ###   ########.fr       */
+/*   Updated: 2024/11/20 18:10:11 by zqouri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ unsigned long	get_time_now(void);
 void			ft_usleep(unsigned long time);
 t_data			*parsing(int ac, char **av);
 int				check_args(char **av);
-t_data			*init_philos(t_data *data, int n);
 void			print_status(t_philos *philo, char *status);
 void			destroy_mutexs(t_data *data, int n);
 void			*routine(void *args);
